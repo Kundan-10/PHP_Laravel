@@ -19,7 +19,7 @@
                -- {{$batch->starting}} -- <a href="{{route('batches.edit',['batch'=>$batch])}}">Edit</a></p>
               
                @endforeach
-              {{ $batches -> links() }}
+
                 </div>
             </div>
         </div>

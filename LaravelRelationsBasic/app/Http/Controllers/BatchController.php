@@ -13,8 +13,8 @@ class BatchController extends Controller
     public function index()
     {
 
-        $batches=Batch::all();
-        return view("batches.index",["batches" => $batches]);
+        $batches = Batch::paginate(3);
+        return view('batches.index', ['batches' => $batches]);
     }
 
     /**
