@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profile;
 
 class UserController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
 
-      
+
     }
 
     /**
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -30,7 +31,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-      
+
     }
 
     /**
@@ -38,7 +39,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $batch = User::find($id)->profile();
+        
+    //    if(User::find($id)->profile){
+    //       $profile=new Profile;
+    //    }
+        $batch = User::find($id)->profile;
         // return view('Users.show',['Users'=> $User]);
     }
 
@@ -47,7 +52,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-     
+
     }
 
     /**
@@ -65,7 +70,7 @@ class UserController extends Controller
         // $batch->starting = $starting;
 
         // $batch->save();
-        
+
 
         //  return redirect()->route('batches.show',['batch'=> $batch]);
     }

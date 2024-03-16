@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('question_quiz', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('quiz_id');
+            $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

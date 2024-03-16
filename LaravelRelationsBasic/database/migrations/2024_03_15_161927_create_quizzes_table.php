@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('batch_id');
+            $table->foreign('batch_id')->references('id')->on('batches');
+            $table->string('title');
+            $table->dateTime('starting');
+            $table->dateTime('ending');
+            $table->mediumInteger('duration')->default(0);
             $table->timestamps();
         });
     }
