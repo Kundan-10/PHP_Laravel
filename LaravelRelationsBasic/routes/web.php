@@ -42,5 +42,9 @@ Route::resource('questions', DashboardController::class);
 
 
 Route::get('/dash', [DashboardController::class, 'index']);
+Route::get('/bulk', [DashboardController::class, 'bulk']);
+Route::get('/private-url', [DashboardController::class, 'url_private'])->middleware('auth');
+Route::get('/public-url', [DashboardController::class, 'url_public']);
+
 require __DIR__ . '/auth.php';
 

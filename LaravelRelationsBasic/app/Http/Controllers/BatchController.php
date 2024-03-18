@@ -15,12 +15,23 @@ class BatchController extends Controller
 
         $name = $request->input('name');
         if($name == ""){
-            $batches = Batch::withCount('quizzes')->paginate(10);
+            $batches = Batch::withCount('quizzes')->paginate(30);
 
         }else{
             $batches = Batch::withCount('quizzes')->where('name','LIKE','%'. $name .'%')->paginate(10);
 
         }
+
+        
+
+        // batches have no quizzes
+        // $batches = Batch::withCount('quizzes')->doesntHave('quizzes')->paginate(30);
+
+        //batches has quizzes
+        // $batches = Batch::withCount('quizzes')->has('quizzes')->paginate(30);
+
+
+
 
         return view('batches.index', ['batches' => $batches]);
     }
