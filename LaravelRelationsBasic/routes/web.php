@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +38,9 @@ Route::resource('batches', BatchController::class);
 Route::resource('users', UserController::class);
 Route::resource('quizzes', QuizController::class);
 Route::resource('questions', QuestionController::class);
+Route::resource('questions', DashboardController::class);
 
-require __DIR__.'/auth.php';
+
+Route::get('/dash', [DashboardController::class, 'index']);
+require __DIR__ . '/auth.php';
+
