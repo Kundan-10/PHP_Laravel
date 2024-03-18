@@ -10,10 +10,18 @@ class BatchController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $batches = Batch::paginate(3);
+        $name = $request->input('name');
+        if($name == ""){
+            $batches = Batch::withCount('quizzes')->paginate(10);
+
+        }else{
+            $batches = Batch::withCount('quizzes')->where('name','LIKE','%'. $name .'%')->paginate(10);
+
+        }
+
         return view('batches.index', ['batches' => $batches]);
     }
 
@@ -78,7 +86,7 @@ class BatchController extends Controller
         $batch->save();
         
 
-         return redirect()->route('batches.show',['batch'=> $batch]);
+        return redirect()->route('batches.show',['batch'=> $batch]);
     }
 
     /**

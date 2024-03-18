@@ -18,20 +18,11 @@
                         <input id="name" class="block mt-1 w-full" type="text" name="name" placeholder="name"
                          required />
                    </div>
-
-                   <!-- <div class="grid grid-cols-6 gap-6">
-                     <div class="col-span-6 sm:col-span-4">
-                        <label for="batchName" value="BatchName" />
-                        <input id="name" type="text" name="batchName" placeholder="Batch Name" style="color:Red;"
-                         required />
-                   </div> -->
-
                    <div class="col-span-6 ed:col-span-2">
                         <label for="starting" value="Starting" />
                         <input id="starting" class="block et-1 w-full" type="date" name="starting" 
                           style="color:Red;"r placeholder="Admision Date" required />
                    </div>
-
                    <div class="flex col-span-6 justify-end"> 
                     <button>
                          Create Batch  

@@ -13,7 +13,10 @@
                     <h2>ID - {{$batch->id}} </h2>
                     <h2>Name - {{$batch->name}} </h2>
                     <h2>Starting - {{$batch->starting}} </h2>
-                    <a href=""></a>
+                    <h2>Quizzes</h2>
+                    @foreach ($batch->quizzes as $quiz)
+                        <p> - {{$quiz ->title}}</p>
+                    @endforeach
                 </div>
             </div>
         </div>
