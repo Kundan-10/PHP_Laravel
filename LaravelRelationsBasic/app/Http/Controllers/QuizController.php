@@ -14,8 +14,9 @@ class QuizController extends Controller
      */
     public function index()
     {
-           $quizzes =Quiz::with(['batch','user'])->paginate(10);
-           return view('quizzes.index', ['quizzes'=>$quizzes]);
+           $quizzes =Quiz::with(['batch','user'])->paginate(30);
+            $message = session('message', '');
+           return view('quizzes.index', ['quizzes'=>$quizzes,'message'=>$message]);
     }
 
     /**
@@ -48,7 +49,8 @@ class QuizController extends Controller
        $quiz->user_id = Auth::id();
 
        $quiz->save();
-       return $quiz->id;
+      //  $request->session()->flash('message', 'batch created successful!');
+       return redirect()->route('quizzes.index');
     }
 
     /**
@@ -80,9 +82,13 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,string $id)
     {
      
+       $quiz = Quiz::find($id);
+       $quiz->delete();
 
+      //  $request->session()->flash('message', 'quiz deleted successful!');
+       return redirect()->route('quizzes.index');
     }
 }

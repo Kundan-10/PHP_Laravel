@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                <form method="POST" action="{{ route('batches.store') }}">
+                <form method="POST" action="{{ route('batches.store') }}" enctype="multipart/form-data">
                    @csrf 
                    <div class="grid grid-cols-6 gap-6">
                      <div class="col-span-6 sm:col-span-4">
@@ -23,6 +23,12 @@
                         <input id="starting" class="block et-1 w-full" type="date" name="starting" 
                           style="color:Red;"r placeholder="Admision Date" required />
                    </div>
+
+                   <div class="col-span-6 ed:col-span-2">
+                        <label for="icon" value="Icon" />
+                        <input id="icon" class="block et-1 w-full" type="file" name="icon" required />
+                   </div>
+
                    <div class="flex col-span-6 justify-end"> 
                     <button>
                          Create Batch  

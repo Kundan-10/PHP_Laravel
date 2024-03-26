@@ -12,6 +12,9 @@
                 <x-nav-link :href="route('quizzes.create')">
                     Create Quiz
                 </x-nav-link>
+                @if($message)
+                      <p class="text-center"> {{ $message }} </p>   
+                @endif
 
                 <!-- for loop for looping the batches  -->
                 @foreach ($quizzes as $quiz)

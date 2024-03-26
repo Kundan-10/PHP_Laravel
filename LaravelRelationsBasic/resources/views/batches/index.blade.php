@@ -12,16 +12,16 @@
                 <form action="">
                        <input id="name" class="block mt-1 w-full" type="text" name="name" required />
                 </form>
+                
+                @if($message)
+                      <p class="text-center"> {{ $message }} </p>   
+                @endif 
                 <x-nav-link :href="route('batches.create')">
                     Create Batch
                 </x-nav-link>
-                 <button >Empty Batches</button>
-                 <button>Non Empty Batches</button>
-                <!-- for loop for looping the batches -->
                @foreach ($batches as $batch)
-               <p><a href="{{route('batches.show',['batch'=>$batch])}}">{{$batch->id}} - </a>{{ $batch->name }} 
-               -- {{$batch->starting}} --{{$batch->quizzes_count}}-- <a href="{{route('batches.edit',['batch'=>$batch])}}">Edit</a></p>
-              
+               <p><a href="{{route('batches.show', ['batch' => $batch])}}">{{$batch->id}} - </a>{{ $batch->name }} 
+               -- {{$batch->starting}} --{{$batch->quizzes_count}}-- <a href="{{route('batches.edit', ['batch' => $batch])}}">Edit</a></p>
                @endforeach
               {{ $batches -> links() }}
                 </div>

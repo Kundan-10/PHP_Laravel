@@ -15,7 +15,7 @@
                     <h2>Starting - {{$batch->starting}} </h2>
                     <h2>Quizzes</h2>
                     @foreach ($batch->quizzes as $quiz)
-                        <p> - {{$quiz ->title}}</p>
+                        <p> - {{$quiz ->title}} </p>
                     @endforeach
                 </div>
             </div>

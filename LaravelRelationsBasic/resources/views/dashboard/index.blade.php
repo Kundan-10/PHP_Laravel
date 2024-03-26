@@ -13,6 +13,8 @@
                        <h2>batches Count - {{$counts[1]}}</h2>
                      <h2>quizzes Count - {{$counts[2]}}</h2>
                      <h2>questions Count - {{$counts[3]}}</h2>
+                     <hr/>
+                     <p>Session pages - {{ $visits }} </p>
                 </div>
             </div>
         </div>

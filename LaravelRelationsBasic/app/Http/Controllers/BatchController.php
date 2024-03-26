@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Batch;
+use Illuminate\Support\Facades\Session;
+
 
 class BatchController extends Controller
 {
@@ -12,28 +14,24 @@ class BatchController extends Controller
      */
     public function index(Request $request)
     {
+        //  $request->session::increment('visits');
+        // $request->session()->increment('visits', 2);
+         Session::put('visits', Session::get('visits', 0) + 1);
 
         $name = $request->input('name');
-        if($name == ""){
+        if ($name == "") {
             $batches = Batch::withCount('quizzes')->paginate(30);
 
-        }else{
-            $batches = Batch::withCount('quizzes')->where('name','LIKE','%'. $name .'%')->paginate(10);
-
+        } else {
+            $batches = Batch::withCount('quizzes')->where('name', 'LIKE', '%' . $name . '%')->paginate(20);
         }
 
+
+          $message = session('message', '');
+        return view('batches.index', ['batches' => $batches, 'message' => $message ]);
+
+
         
-
-        // batches have no quizzes
-        // $batches = Batch::withCount('quizzes')->doesntHave('quizzes')->paginate(30);
-
-        //batches has quizzes
-        // $batches = Batch::withCount('quizzes')->has('quizzes')->paginate(30);
-
-
-
-
-        return view('batches.index', ['batches' => $batches]);
     }
 
     /**
@@ -57,6 +55,11 @@ class BatchController extends Controller
         $batch->name = $name;
         $batch->starting = $starting;
         $batch->save();
+        //$icon = $request->file('photo');
+      
+        // $request->icon->storeAs('images', 'batch', [$batch->id,'.jpg']);
+         $request->icon->storeAs('images', 'batchPhoto.jpg');
+        session()->flash('message', 'batch created successful!');
         return redirect()->route('batches.index');
     }
 
@@ -66,7 +69,8 @@ class BatchController extends Controller
     public function show(string $id)
     {
         $batch = Batch::find($id);
-        return view('batches.show',['batch'=> $batch]);
+        return view('batches.show', ['batch' => $batch]);
+
     }
 
     /**
@@ -76,8 +80,8 @@ class BatchController extends Controller
     {
         $batch = Batch::find($id);
 
-        return view('batches.edit',['batch'=> $batch]);
-    
+        return view('batches.edit', ['batch' => $batch]);
+
     }
 
     /**
@@ -85,8 +89,7 @@ class BatchController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-        $batch= Batch::find($id);
+        $batch = Batch::find($id);
 
         $name = $request->input('name');
         $starting = $request->input('starting');
@@ -95,18 +98,19 @@ class BatchController extends Controller
         $batch->starting = $starting;
 
         $batch->save();
-        
 
-        return redirect()->route('batches.show',['batch'=> $batch]);
+        return redirect()->route('batches.show', ['batch' => $batch]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $batch = Batch::find($id);
         $batch->delete();
+
+        session()->flash('message', 'batch deleted successful!');
         return redirect()->route('batches.index');
 
     }

@@ -17,13 +17,12 @@
                      <div class="col-span-6 sm:col-span-4">
                         <label for="name" value="name" />
                         <input id="name" class="block mt-1 w-full"
-                           type="text" name="name" value="{{$batch->name}}" placeholder="name"
-                         required />
+                           type="text" name="name" value="{{$batch->name}}" placeholder="name" required />
                    </div>
                    <div class="col-span-6 ed:col-span-2">
                         <label for="starting" value="Starting" />
                         <input id="starting" class="block et-1 w-full" type="date" 
-                           name="starting" value="{{$batch->starting}}" style="color:Red;"r placeholder="Admision Date" required />
+                           name="starting" value="{{$batch->starting}}" placeholder="Admision Date" required />
                    </div>
 
                    <div class="flex col-span-6 justify-end"> 
